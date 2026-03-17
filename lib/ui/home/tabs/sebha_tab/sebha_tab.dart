@@ -23,6 +23,12 @@ class _SebhaTabState extends State<SebhaTab> {
     counter = 0;
   }
 
+ @override
+  void dispose() {
+    super.dispose();
+    sebhaController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -49,7 +55,7 @@ class _SebhaTabState extends State<SebhaTab> {
                 counter++;
                 turns += 1 / 30;
                 if (counter == 30) {
-                  _changeZakr(zakrIndex);
+                  _changeZakr(null);
                   sebhaController.animateToPage(
                     zakrIndex,
                     duration: Duration(milliseconds: 300),
@@ -78,7 +84,7 @@ class _SebhaTabState extends State<SebhaTab> {
                     child: Image.asset("assets/images/sebha_body.png"),
                   ),
                   Column(
-                    spacing: 20,
+
                     children: [
                       Container(
                         height: 100,
@@ -88,6 +94,11 @@ class _SebhaTabState extends State<SebhaTab> {
                           controller: sebhaController,
                           scrollDirection: Axis.horizontal,
                           itemCount: sebhaList.length,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _changeZakr(index);
+                            });
+                          },
                           itemBuilder: (context, index) => Container(
                             alignment: Alignment.bottomCenter,
                             child: Text(
@@ -98,7 +109,7 @@ class _SebhaTabState extends State<SebhaTab> {
                           ),
                         ),
                       ),
-
+                      SizedBox(height: 20,),
                       Text(
                         counter.toString(),
                         style: TextStyles.bodyLargeStyle(fontSize: 36),
@@ -116,11 +127,8 @@ class _SebhaTabState extends State<SebhaTab> {
     );
   }
 
-  void _changeZakr(int value) {
+  void _changeZakr(int? index) {
     counter = 0;
-    zakrIndex++;
-    if (zakrIndex == sebhaList.length) {
-      zakrIndex = 1;
-    }
+    zakrIndex = index ?? (zakrIndex + 1) % sebhaList.length;
   }
 }
