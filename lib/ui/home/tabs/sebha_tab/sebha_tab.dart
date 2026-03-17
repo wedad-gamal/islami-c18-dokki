@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:islami_c18_dokki/theme/text_styles.dart';
 import 'package:islami_c18_dokki/ui/home/tabs/sebha_tab/models/sebha.dart';
 import 'package:islami_c18_dokki/ui/home/widgets/base_tab.dart';
