@@ -11,21 +11,16 @@ class SebhaTab extends StatefulWidget {
 }
 
 class _SebhaTabState extends State<SebhaTab> {
-  late int counter;
+  int counter = 0;
   int zakrIndex = 0;
   double turns = 0.0;
-  PageController sebhaController = PageController();
+  final PageController sebhaController = PageController();
 
-  @override
-  void initState() {
-    super.initState();
-    counter = 0;
-  }
 
  @override
   void dispose() {
-    super.dispose();
     sebhaController.dispose();
+    super.dispose();
   }
 
   @override
@@ -57,7 +52,7 @@ class _SebhaTabState extends State<SebhaTab> {
                   _changeZakr(null);
                   sebhaController.animateToPage(
                     zakrIndex,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 }
