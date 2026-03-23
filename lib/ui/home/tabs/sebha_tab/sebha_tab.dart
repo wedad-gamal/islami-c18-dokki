@@ -26,6 +26,7 @@ class _SebhaTabState extends State<SebhaTab> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return BaseTab(
       image: "assets/images/sebha_background.png",
       child: Column(
@@ -65,8 +66,8 @@ class _SebhaTabState extends State<SebhaTab> {
                 alignment: AlignmentGeometry.center,
                 children: [
                   Positioned(
-                    top: -75,
-                    right: 115,
+                    top: height * 0.085 * -1,
+                    right: width * 0.275,
                     child: Image.asset(
                       "assets/images/sebha_head.png",
                       width: 70,
